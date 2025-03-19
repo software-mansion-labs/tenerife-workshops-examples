@@ -2,10 +2,10 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from 'react-native-reanimated';
-import {Button, StyleSheet, View} from 'react-native';
+} from "react-native-reanimated";
+import { Button, StyleSheet, View } from "react-native";
 
-import React from 'react';
+import React from "react";
 
 export default function Animations() {
   const width = useSharedValue(50);
@@ -15,10 +15,10 @@ export default function Animations() {
     };
   });
 
-  // const frameLoop = () => {
-  //   console.log(Date.now());
-  //   requestAnimationFrame(frameLoop);
-  // }
+  const frameLoop = () => {
+    console.log(Date.now());
+    requestAnimationFrame(frameLoop);
+  };
 
   return (
     <View style={styles.container}>
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
   view: {
     margin: 20,
     height: 80,
-    backgroundColor: 'rgb(0, 26, 114)',
+    backgroundColor: "rgb(0, 26, 114)",
   },
 });

@@ -1,5 +1,12 @@
-import {Animated, PanResponder, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import {
+  Animated,
+  InteractionManager,
+  PanResponder,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 
 function Ball() {
   const pan = useRef(new Animated.ValueXY()).current;
@@ -8,22 +15,23 @@ function Ball() {
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: Animated.event(
-        [null, {dx: pan.x, dy: pan.y}],
-        {useNativeDriver: false}, // doesn't work with native driver :/
+        [null, { dx: pan.x, dy: pan.y }],
+        { useNativeDriver: false } // doesn't work with native driver :/
       ),
       onPanResponderRelease: () => {
         pan.extractOffset();
       },
-    }),
+    })
   ).current;
 
   return (
     <View>
       <Animated.View
         style={{
-          transform: [{translateX: pan.x}, {translateY: pan.y}],
+          transform: [{ translateX: pan.x }, { translateY: pan.y }],
         }}
-        {...panResponder.panHandlers}>
+        {...panResponder.panHandlers}
+      >
         <View style={styles.ball} />
       </Animated.View>
     </View>
@@ -53,15 +61,15 @@ export function AnimatedWithGestureResponder() {
 
 function heavyTask() {
   const timestamp = performance.now();
-  console.log(Math.round(timestamp), 'heavyTaskA');
+  console.log(Math.round(timestamp), "heavyTaskA");
   while (performance.now() - timestamp < 100);
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   text: {
     fontSize: 20,
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 100,
-    backgroundColor: 'blue',
-    alignSelf: 'center',
+    backgroundColor: "blue",
+    alignSelf: "center",
   },
 });
